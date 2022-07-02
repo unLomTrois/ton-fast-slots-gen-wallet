@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.1",
+    "fs-extra": "^10.1.0",
     "tonweb": "^0.0.50"
   }
 }
