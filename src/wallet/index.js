@@ -13,18 +13,22 @@ const createWallet = async (tonweb) => {
     // With a key pair, you can create a wallet.
     // Note that this is just an object, we are not deploying anything to the blockchain yet.
     // Transfer some amount of test coins to this wallet address (from your wallet app).
-    // To check you can use blockchain explorer https://testnet.tonscan.org/address/<WALLET_ADDRESS>
+    // To check you can use blockchain explorer https://testnet.tonscan.org/address/<address>
 
     const wallet = tonweb.wallet.create({
         publicKey: key_pair.publicKey
     });
-    const wallet_address = await wallet.getAddress(); // address of this wallet in blockchain
+    const address = await wallet.getAddress(); // address of this wallet in blockchain
+
+    const balance = await tonweb.getBalance(address)
 
     return {
-        public: key_pair.publicKey,
-        secret: key_pair.secretKey,
-        address: wallet_address,
-        address_url: getAddress(wallet_address)
+        wallet: wallet,
+        publickey: key_pair.publicKey,
+        secretkey: key_pair.secretKey,
+        address: address,
+        address_url: getAddress(address),
+        balance: balance
     }
 }
 
